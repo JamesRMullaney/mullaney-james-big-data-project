@@ -16,5 +16,21 @@ dbutils.fs.mv("file:/tmp/theCount.txt","dbfs:/tmp/theCount.txt")
 theCountRDD = sc.textFile("dbfs:/tmp/theCount.txt") 
 ```
 #### Cleaning
+Seperate the entire book into a collection of data thats split into just the words the book contains.
+```python
+# tokenize the book to seperate the words . . . messily currently
+messyTheCountRDD = theCountRDD.flatMap(lambda line: line.lower().strip().split(" "))
+
+# Remove punction
+import re
+cleanTheCountRDD = messyTheCountRDD.map(lambda t: re.sub(r'[^a-z]' , '', t))
+
+# Filter out stopwords
+from pyspark.ml.feature import StopWordsRemover
+remover = StopWordsRemover()
+stopwords = remover.getStopWords()
+
+wordsTheCountRDD = cleanTheCountRDD.filter(lambda w: w not in stopwords)
+```
 #### Processing
 #### Graphing
