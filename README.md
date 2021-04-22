@@ -64,3 +64,4 @@ sns.barplot(xlabel, ylabel, data=dataFrameTheCount).set_title(title)
 ```
 #### Result
 ![image](https://user-images.githubusercontent.com/54418767/115654464-cecb0c00-a2f6-11eb-9caa-a631ab7253fd.png)
+**Note:** There are 1,316 pages in *The Count of Monte Cristo*, so "Said" appears roughly 2.64 times a page.
